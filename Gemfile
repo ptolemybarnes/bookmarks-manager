@@ -1,12 +1,16 @@
 source "https://rubygems.org"
 
-gem 'sinatra'
-gem 'capybara'
-gem 'cucumber'
-gem 'launchy'
-gem 'rspec'
-gem 'byebug'
-gem 'sinatra-partial'
+group :test do
+  gem 'rspec'
+  gem 'cucumber'
+  gem 'byebug'
+  gem 'capybara'
+end
 
-gem 'data_mapper'
-gem 'dm-postgres-adapter'
+group :development do
+  gem 'sinatra'
+  gem 'launchy'
+  gem 'sinatra-partial'
+  gem 'data_mapper'
+  gem 'dm-postgres-adapter'
+end
