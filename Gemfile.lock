@@ -121,6 +121,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   byebug
   capybara
   cucumber
