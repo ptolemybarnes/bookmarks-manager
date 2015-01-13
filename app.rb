@@ -4,10 +4,12 @@ require 'byebug'
 
 env = ENV['RACK_ENV'] || 'development'
 
-# we're telling datamapper to use a postgres database on localhost. The name will be "bookmark_manager_test" or "bookmark_manager_development" depending on the environment
+# we're telling datamapper to use a postgres database on localhost. 
+# The name will be "bookmark_manager_test" or "bookmark_manager_development" depending on the environment
 DataMapper.setup(:default, "postgres://localhost:15432/bookmark_manager_#{env}")
 
 require './lib/link' # this needs to be done after datamapper is initialised
+require './lib/tag'
 
 # After declaring your models, you should finalise them
 DataMapper.finalize
@@ -25,8 +27,17 @@ class BookmarkManager < Sinatra::Base
   post '/links' do
     url   = params["url"]
     title = params["title"]
-    Link.create(:url => url, :title => title)
+    tag   = params["tags"].split(" ").map do |tag|
+      Tag.first_or_create(:text => tag)
+    end
+    Link.create(:url => url, :title => title, :tags => tag)
     redirect to('/')
+  end
+
+  get '/tags/:text' do
+    tag    = Tag.first(:text => params[:text])
+    @links = tag ? tag.links : []
+    erb :index
   end
 
 end
