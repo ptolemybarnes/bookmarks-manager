@@ -5,6 +5,7 @@ group :test do
   gem 'cucumber'
   gem 'byebug'
   gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :development do
