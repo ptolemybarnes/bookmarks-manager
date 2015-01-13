@@ -10,5 +10,11 @@ So I can be able to access a link later
 I would like to add links to my existing list
 
 ### Add tags to the links
+As a bored user
+So I can find links later
+I would like to add tags to my links
 
 ### Filter links by a tag
+As a bored user
+So I can find links of a certain type
+I would like to be filter links by the tag
