@@ -1,7 +1,11 @@
 <h1>Please sign up</h1>
 
+<% if flash[:errors] %>
+  <div id="notice" style="color: red;"><%= flash[:errors] %></div>
+  </br>
+<% end %>
 <form action="/users" method="post">
-                  Email: <input name="email"                 type="text">
+                  Email: <input name="email"                 type="text" value="<%= @user.email %>">
                Password: <input name="password"              type="password">
   Password Confirmation: <input name="password_confirmation" type="password">
   
