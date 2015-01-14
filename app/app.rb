@@ -11,6 +11,7 @@ class BookmarkManager < Sinatra::Base
   set :root, File.dirname(__FILE__) # sets app/. as the default route.
   use Rack::Flash
   use Rack::MethodOverride
+  
   include ApplicationHelpers
 
   enable :sessions

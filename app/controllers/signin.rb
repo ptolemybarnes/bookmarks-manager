@@ -6,6 +6,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   delete '/sessions/:email' do
+    session.clear
     "Good bye #{params[:email]}!"
   end
 
