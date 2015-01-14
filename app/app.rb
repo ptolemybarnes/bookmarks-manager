@@ -7,11 +7,13 @@ require_relative './helpers/app_helpers'
 
 class BookmarkManager < Sinatra::Base
   use Rack::Flash
+  use Rack::MethodOverride
   include ApplicationHelpers
 
   enable :sessions
   set :session_secret, 'super_secret'
 
+# CREATE / VIEW BOOKMARKS
 
   get '/' do
     @links = Link.all
@@ -59,6 +61,10 @@ class BookmarkManager < Sinatra::Base
 
   get '/sessions/new' do
     erb :"sessions/new"
+  end
+
+  delete '/sessions/:email' do
+    "Good bye #{params[:email]}!"
   end
 
   post '/sessions' do
