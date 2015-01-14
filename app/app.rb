@@ -3,11 +3,15 @@ require 'sinatra/base'
 require 'byebug'
 require 'rack-flash'
 require_relative 'data_mapper_setup'
+require_relative './helpers/app_helpers'
 
 class BookmarkManager < Sinatra::Base
+  use Rack::Flash
+  include ApplicationHelpers
+
   enable :sessions
   set :session_secret, 'super_secret'
-  use Rack::Flash
+
 
   get '/' do
     @links = Link.all
@@ -67,14 +71,6 @@ class BookmarkManager < Sinatra::Base
       flash[:errors] = ["The email or password is incorrect"]
       erb :"sessions/new"
     end
-  end
-
-  helpers do
-
-    def current_user
-      @current_user ||=User.get(session[:user_id]) if session[:user_id]
-    end
-
   end
 
 end
