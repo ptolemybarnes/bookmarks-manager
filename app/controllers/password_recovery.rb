@@ -7,12 +7,10 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/users/password_recovery' do
-    puts User.all
-    user = User.first(:email => params[:email])
-    user.password_token = (1..64).map { ('A'..'Z').to_a.sample }.join
-    user.password_token_timestamp = Time.now
-    user.save
-
+    User.raise_on_save_failure = true 
+     user = User.first(:email => params[:email])
+    token = (1..64).map { ('A'..'Z').to_a.sample }.join
+    user.update(password_token: token, password_token_timestamp: Time.now)
     recovery_url = url_for("/users/password_recovery/#{user.password_token}", :full)
 
     email = {
@@ -25,6 +23,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/users/password_recovery/:token' do
+    # byebug
     user = User.first( :password_token => params[:token] )
     "Hello," + user.email
   end

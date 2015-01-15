@@ -4,15 +4,15 @@ require 'byebug'
 class User
   include DataMapper::Resource
 
-  attr_reader :password
-  attr_accessor :password_confirmation, :password_token, :password_token_timestamp
+  attr_reader :password, :email
+  attr_accessor :password_confirmation
   
 
   property :id,    Serial
   property :email, String, :unique => true, :message => "This email is already taken"
   property :password_digest, Text
-  property :password_token, String
-  property :password_token_timestamp, String
+  property :password_token, Text
+  property :password_token_timestamp, Text
 
   validates_confirmation_of :password, :message => "Sorry, your passwords don't match"
 
@@ -30,4 +30,5 @@ class User
       nil
     end
   end
+
 end
