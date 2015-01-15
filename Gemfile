@@ -18,4 +18,6 @@ group :development do
   gem 'sinatra-partial'
   gem 'data_mapper'
   gem 'dm-postgres-adapter'
+  gem 'sinatra-assets'
+  gem 'emk-sinatra-url-for'
 end
