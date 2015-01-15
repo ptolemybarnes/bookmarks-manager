@@ -85,6 +85,7 @@ GEM
     mini_portile (0.6.2)
     multi_json (1.10.1)
     multi_test (0.1.1)
+    netrc (0.10.2)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     rack (1.6.0)
@@ -94,6 +95,9 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -132,6 +136,7 @@ DEPENDENCIES
   dm-postgres-adapter
   launchy
   rack-flash3
+  rest-client
   rspec
   sinatra
   sinatra-partial

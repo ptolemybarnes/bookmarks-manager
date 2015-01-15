@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem 'bcrypt-ruby'
 gem 'rack-flash3'
+gem 'rest-client'
 
 group :test do
   gem 'rspec'
